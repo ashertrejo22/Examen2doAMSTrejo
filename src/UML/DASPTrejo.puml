@@ -1,0 +1,21 @@
+@startuml 
+start
+
+:Ingresar Usuario y contraseña;
+:Validar credenciales;
+if (¿Son validos los datos?) then (Si)
+    if(¿Que usuario es?) then (Cliente)
+        :Ver catalogo de productos;
+        :Seleccionar productos y cantidades;
+        :Crear pedido;
+        :Consultar pedido;
+    else (Administrador)
+        :Añadir productos;
+        :Crear catalogos;
+        :Consultar estados;
+    end if
+else(No)
+:Error datos invalidos;
+endif
+stop
+@enduml

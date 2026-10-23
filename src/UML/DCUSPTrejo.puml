@@ -1,0 +1,34 @@
+@startuml
+
+    left to right direction 
+    actor "Usuario" as usuario
+    actor "Administrador" as administrador
+
+    rectangle "Sistema de pedidos"{
+        usecase "Registrar informacion" as UC_Reg
+        usecase "Iniciar Sesion" as UC_Log
+        usecase "Validar datos de usuario" as UC_Val
+        usecase "Ver catalogo de productos" as UC_Ver
+        usecase "Añadir productos al carrito" as UC_AñaPro
+        usecase "Crear pedido" as UC_Ped
+        usecase "Ver pedido" as UC_VerPed
+        usecase "Registrar producto" as UC_RegPro
+    }
+
+    usuario --> UC_Reg
+    usuario --> UC_Ver
+    usuario --> UC_Ped
+    usuario --> UC_VerPed
+
+    administrador --> UC_Log
+    administrador --> UC_RegPro
+
+    UC_Log ..> UC_Val : <<include>>
+    UC_RegPro ..> UC_Log : <<include>>
+    UC_Ped ..> UC_Log : <<include>>
+    UC_VerPed ..> UC_Log : <<include>>
+    UC_Ped ..> UC_AñaPro : <<include>>
+
+    UC_Reg ..> UC_Log : <<extend>>
+
+@enduml

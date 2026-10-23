@@ -1,0 +1,39 @@
+@startuml
+
+entity " Usuario " as usuario{
+    *usu_id : INT <<PK>>
+    --
+    *nombre: VARCHAR (100)
+    *email: VARCHAR(100)
+    *contraseña: VARCHAR(25)
+}
+
+entity "Administrador" as administrador{
+    *admin_id : INT <<PK>>
+    --
+    *nombre: VARCHAR (100)
+    *email: VARCHAR(100)
+    *contraseña: VARCHAR(25)
+}
+
+entity "Producto" as producto{
+    *product_id : INT <<PK>>
+    --
+    *nombre: VARCHAR (100)
+    *precio: DECIMAL(5,2)
+    *cantidad: INT (5)
+}
+
+entity "Orden" as orden{
+    *orden_id : INT <<PK>>
+    --
+    *usu_id: INT <<FK>>
+    *product_id: INT <<FK>>
+    *cantidad: INT(5)
+    *fecha_pedido: DATE
+}
+
+producto ||--|{ orden: "Incluye (1:N)"
+usuario ||--|{ orden: "Realiza (1:N)"
+
+@enduml

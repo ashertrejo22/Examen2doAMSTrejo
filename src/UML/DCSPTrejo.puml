@@ -1,0 +1,52 @@
+@startuml
+    class Usuario{
+        -usu_id: int
+        -nombre: String
+        -email: String
+        -contraseña: String
+        --
+        +Usuario():
+        +consultarInformacion():
+    }
+
+    class Administrador{
+        -adm_id: int
+        -nombre: String
+        -email: String
+        -contraseña: String
+        --
+        +Administrador():
+        +consultarInformacion():
+        +verPedidos():
+        +agregarProductos(p: Producto):
+        +crearCatalogo():
+        +verCatalogos():
+    }
+
+    class Producto{
+        -product_id: int
+        -nombre:String
+        -precio: float
+        -cantidad: int
+        --
+        +Producto():
+        +consultarInformacion():
+        +añadirCantidad(int): void
+    }
+
+    class Orden{
+        -usu_id: int
+        -product_id:int
+        -orden_id: int
+        -cantidad: int
+        -fecha_pedido:LocalDate
+        --
+        +Orden():
+        +verOrden():
+    }
+
+    Administrador  --  Producto : gestiona
+    Usuario -- Orden : realiza
+    Orden  -- Producto : contiene 
+    Administrador  -- Orden : consulta 
+@enduml
